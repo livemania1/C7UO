@@ -24,25 +24,19 @@
             opacity: 1; /* Set to 1 for full opacity */
             z-index: 10; /* Ensure logo is on top */
         }
-        .video-ad {
-            width: 100%;
-            max-width: 800px; /* Adjust as needed */
-            margin-bottom: 10px; /* Space between ad and iframe */
-        }
     </style>
 </head>
 <body>
     <h1>Embedded Iframe with Video Ads</h1>
     <div id="iframe-container">
-        <!-- Video Ad Section -->
-        <video class="video-ad" controls>
-            <source src="https://vimeo.com/966863416?share=copy" type="video/mp4"> <!-- Replace with your video ad URL -->
-            Your browser does not support the video tag.
-        </video>
-        
-        <iframe allow="encrypted-media" allowfullscreen="yes" frameborder="0" height="510" id="streamIframe" marginheight="0" marginwidth="0" name="streamframe" scrolling="no" src="https://play.footfy.live/api/tfn.html?id=SSC1"></iframe>
+        <iframe allow="encrypted-media" allowfullscreen="yes" frameborder="0" height="510" id="streamIframe" marginheight="0" marginwidth="0" name="streamframe" scrolling="no" src="https://streaming.sportsnews.id/p/ssc1.html"></iframe>
         
         <img id="logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwNjkZYfLmvB5B8kULLicWE_vxUwbzPqjBVUjdrPvYl9fLW9w7-B5hxUEYc7ODWXUe4AKv0nOaXS44bwmahu7V_jDyCzVsvU5yEp9DOEy3v34Dp1xzZs7Z2sHtrjJKeOdXh7W27W7zmOyCVFOulpSzOo-bn5SYATZlOO4w9XKgnPGciR0pBEgnvRmn-amC/s1600/86dec2e2-dccd-44ce-9491-418b3d79c4db.png" alt="Logo"> <!-- Logo URL -->
+    </div>
+
+    <!-- Vimeo Video Ad Section -->
+    <div style="height: 0; padding-bottom: calc(12.00%); position:relative; width: 100%;">
+        <iframe allow="autoplay; gyroscope;" allowfullscreen height="100%" referrerpolicy="strict-origin" src="https://player.vimeo.com/video/968947834?&autoplay=1&loop=1&autopause=0&controls=0&muted=1" style="border:0; height:100%; left:0; overflow:hidden; position:absolute; top:0; width:100%" title="Embedded content made on Kapwing" width="100%"></iframe>
     </div>
 </body>
 </html>
