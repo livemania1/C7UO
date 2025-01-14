@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player with Logo</title>
+    <title>Iframe with Logo Overlay</title>
     <style>
-        #video-container {
+        #iframe-container {
             position: relative;
             width: 100%;
             max-width: 800px; /* Adjust as needed */
             margin: auto;
         }
-        video {
+        #streamIframe {
             width: 100%;
-            height: auto;
+            height: 510px; /* Set the height of the iframe */
+            border: 0; /* Remove border */
         }
         #logo {
             position: absolute;
@@ -21,16 +22,14 @@
             right: 10px; /* Adjust as needed */
             width: 100px; /* Adjust logo size */
             opacity: 0.8; /* Adjust transparency */
+            z-index: 10; /* Ensure logo is on top */
         }
     </style>
 </head>
 <body>
-    <h1>Embedded Video Player with Logo</h1>
-    <div id="video-container">
-        <video controls>
-            <source src="https://streaming.sportsnews.id/p/ssc1.html" type="video/mp4"> <!-- Example video URL -->
-            Your browser does not support the video tag.
-        </video>
+    <h1>Embedded Iframe with Logo Overlay</h1>
+    <div id="iframe-container">
+        <iframe allow="encrypted-media" allowfullscreen="yes" frameborder="0" height="510" id="streamIframe" marginheight="0" marginwidth="0" name="streamframe" scrolling="no" src="https://streaming.sportsnews.id/p/ssc1.html"></iframe>
         <img id="logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwNjkZYfLmvB5B8kULLicWE_vxUwbzPqjBVUjdrPvYl9fLW9w7-B5hxUEYc7ODWXUe4AKv0nOaXS44bwmahu7V_jDyCzVsvU5yEp9DOEy3v34Dp1xzZs7Z2sHtrjJKeOdXh7W27W7zmOyCVFOulpSzOo-bn5SYATZlOO4w9XKgnPGciR0pBEgnvRmn-amC/s1600/86dec2e2-dccd-44ce-9491-418b3d79c4db.png" alt="Logo"> <!-- Logo URL -->
     </div>
 </body>
