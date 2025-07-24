@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,55 +25,39 @@
             height: 100%;
         }
     </style>
-    <style type="text/css">* {user-select: auto !important; -webkit-user-select: auto !important;}</style>
-    <input type="hidden" id="inject_idm_text_selection">
 </head>
 
 <body>
     <div hidden="" id="sprite-plyr">
-        <!-- SVG symbols for Plyr controls -->
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <symbol id="plyr-airplay" viewBox="0 0 18 18">
-                <path d="M16 1H2a1 1 0 00-1 1v10a1 1 0 001 1h3v-2H3V3h12v8h-2v2h3a1 1 0 001-1V2a1 1 0 00-1-1z"></path>
-                <path d="M4 17h10l-5-6z"></path>
+            <symbol id="plyr-play" viewBox="0 0 18 18">
+                <path d="M15.562 8.1L3.87.225c-.818-.562-1.87 0-1.87.9v15.75c0 .9 1.052 1.462 1.87.9L15.563 9.9c.584-.45.584-1.35 0-1.8z"></path>
+            </symbol>
+            <symbol id="plyr-pause" viewBox="0 0 18 18">
+                <path d="M6 1H3c-.6 0-1 .4-1 1v14c0 .6.4 1 1 1h3c.6 0 1-.4 1-1V2c0-.6-.4-1-1-1zm6 0c-.6 0-1 .4-1 1v14c0 .6.4 1 1 1h3c.6 0 1-.4 1-1V2c0-.6-.4-1-1-1h-3z"></path>
             </symbol>
             <!-- Other symbols omitted for brevity -->
         </svg>
     </div>
 
-    <div tabindex="0" class="plyr plyr--full-ui plyr--video plyr--html5 plyr--fullscreen-enabled plyr--is-touch plyr--hide-controls plyr--playing">
-        <div class="plyr__controls">
-            <button class="plyr__controls__item plyr__control plyr__control--pressed" type="button" data-plyr="play" aria-label="Pause">
-                <svg class="icon--pressed" aria-hidden="true" focusable="false"><use xlink:href="#plyr-pause"></use></svg>
-                <svg class="icon--not-pressed" aria-hidden="true" focusable="false"><use xlink:href="#plyr-play"></use></svg>
-                <span class="label--pressed plyr__sr-only">Pause</span>
-                <span class="label--not-pressed plyr__sr-only">Play</span>
-            </button>
-            <div class="plyr__controls__item plyr__volume">
-                <button type="button" class="plyr__control plyr__control--pressed" data-plyr="mute">
-                    <svg class="icon--pressed" aria-hidden="true" focusable="false"><use xlink:href="#plyr-muted"></use></svg>
-                    <svg class="icon--not-pressed" aria-hidden="true" focusable="false"><use xlink:href="#plyr-volume"></use></svg>
-                    <span class="label--pressed plyr__sr-only">Unmute</span>
-                    <span class="label--not-pressed plyr__sr-only">Mute</span>
-                </button>
-                <input data-plyr="volume" type="range" min="0" max="1" step="0.05" value="1" autocomplete="off" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="plyr-volume-5285" aria-valuetext="0.0%" style="--value: 0%; user-select: none; touch-action: manipulation;">
-            </div>
-            <button class="plyr__controls__item plyr__control" type="button" data-plyr="fullscreen">
-                <svg class="icon--pressed" aria-hidden="true" focusable="false"><use xlink:href="#plyr-exit-fullscreen"></use></svg>
-                <svg class="icon--not-pressed" aria-hidden="true" focusable="false"><use xlink:href="#plyr-enter-fullscreen"></use></svg>
-                <span class="label--pressed plyr__sr-only">Exit fullscreen</span>
-                <span class="label--not-pressed plyr__sr-only">Enter fullscreen</span>
-            </button>
-        </div>
+    <div class="plyr plyr--full-ui plyr--video plyr--html5 plyr--fullscreen-enabled plyr--is-touch">
         <div class="plyr__video-wrapper">
-            <video id="player" autoplay="" muted="" crossorigin="" playsinline="" src="blob:https://starry7c.github.io/a7e30daf-2477-48ed-a111-152772164f8b"></video>
+            <video id="player" autoplay="" muted="" crossorigin="" playsinline=""></video>
             <div class="plyr__poster"></div>
         </div>
-        <div class="plyr__captions"></div>
-        <button type="button" class="plyr__control plyr__control--overlaid plyr__control--pressed" data-plyr="play" aria-label="Pause">
-            <svg aria-hidden="true" focusable="false"><use xlink:href="#plyr-play"></use></svg>
-            <span class="plyr__sr-only">Play</span>
-        </button>
+        <div class="plyr__controls">
+            <button class="plyr__controls__item plyr__control" type="button" data-plyr="play" aria-label="Play">
+                <svg aria-hidden="true" focusable="false"><use xlink:href="#plyr-play"></use></svg>
+                <span class="plyr__sr-only">Play</span>
+            </button>
+            <button class="plyr__controls__item plyr__control" type="button" data-plyr="pause" aria-label="Pause">
+                <svg aria-hidden="true" focusable="false"><use xlink:href="#plyr-pause"></use></svg>
+                <span class="plyr__sr-only">Pause</span>
+            </button>
+            <button class="plyr__controls__item plyr__control" type="button" data-plyr="fullscreen">
+                <span class="plyr__sr-only">Fullscreen</span>
+            </button>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1.1.4/dist/hls.min.js"></script>
@@ -89,33 +73,21 @@
             }
 
             const source = getQueryParam('stream');
+            console.log('Stream source:', source); // Debugging log
             if (!source) {
                 document.body.innerHTML = '<p style="color:white; text-align:center; margin-top:20%;">No stream link provided!</p>';
                 return;
             }
 
             if (Hls.isSupported()) {
-                const hls = new Hls({ maxMaxBufferLength: 100 });
+                const hls = new Hls();
                 hls.loadSource(source);
                 hls.attachMedia(video);
                 hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                    const availableQualities = hls.levels.map(level => level.height);
-                    const defaultQuality = availableQualities[0];
                     const player = new Plyr(video, {
                         controls: ['play-large', 'play', 'mute', 'volume', 'settings', 'fullscreen'],
-                        quality: {
-                            default: defaultQuality,
-                            options: availableQualities,
-                            forced: true,
-                            onChange: (quality) => {
-                                hls.levels.forEach((level, levelIndex) => {
-                                    if (level.height === quality) {
-                                        hls.currentLevel = levelIndex;
-                                    }
-                                });
-                            }
-                        }
                     });
+                    console.log('Plyr initialized with controls'); // Debugging log
                 });
             } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
                 video.src = source;
