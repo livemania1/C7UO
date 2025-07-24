@@ -46,15 +46,25 @@
             <div class="plyr__poster"></div>
         </div>
         <div class="plyr__controls">
+            <button class="plyr__controls__item plyr__control" type="button" data-plyr="play-large" aria-label="Play Large">
+                <svg aria-hidden="true" focusable="false"><use xlink:href="#plyr-play"></use></svg>
+                <span class="plyr__sr-only">Play Large</span>
+            </button>
             <button class="plyr__controls__item plyr__control" type="button" data-plyr="play" aria-label="Play">
                 <svg aria-hidden="true" focusable="false"><use xlink:href="#plyr-play"></use></svg>
                 <span class="plyr__sr-only">Play</span>
             </button>
-            <button class="plyr__controls__item plyr__control" type="button" data-plyr="pause" aria-label="Pause">
-                <svg aria-hidden="true" focusable="false"><use xlink:href="#plyr-pause"></use></svg>
-                <span class="plyr__sr-only">Pause</span>
+            <button class="plyr__controls__item plyr__control" type="button" data-plyr="mute" aria-label="Mute">
+                <svg aria-hidden="true" focusable="false"><use xlink:href="#plyr-muted"></use></svg>
+                <span class="plyr__sr-only">Mute</span>
             </button>
-            <button class="plyr__controls__item plyr__control" type="button" data-plyr="fullscreen">
+            <input data-plyr="volume" type="range" min="0" max="1" step="0.05" value="1" autocomplete="off" role="slider" aria-label="Volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" style="--value: 100%;">
+            <button class="plyr__controls__item plyr__control" type="button" data-plyr="settings" aria-label="Settings">
+                <svg aria-hidden="true" focusable="false"><use xlink:href="#plyr-settings"></use></svg>
+                <span class="plyr__sr-only">Settings</span>
+            </button>
+            <button class="plyr__controls__item plyr__control" type="button" data-plyr="fullscreen" aria-label="Fullscreen">
+                <svg aria-hidden="true" focusable="false"><use xlink:href="#plyr-enter-fullscreen"></use></svg>
                 <span class="plyr__sr-only">Fullscreen</span>
             </button>
         </div>
