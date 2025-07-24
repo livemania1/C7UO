@@ -42,6 +42,10 @@
                 <svg aria-hidden="true" focusable="false"><use xlink:href="#plyr-play"></use></svg>
                 <span class="plyr__sr-only">Play</span>
             </button>
+            <button class="plyr__controls__item plyr__control" type="button" data-plyr="pause" aria-label="Pause">
+                <svg aria-hidden="true" focusable="false"><use xlink:href="#plyr-pause"></use></svg>
+                <span class="plyr__sr-only">Pause</span>
+            </button>
             <button class="plyr__controls__item plyr__control" type="button" data-plyr="mute" aria-label="Mute">
                 <svg aria-hidden="true" focusable="false"><use xlink:href="#plyr-muted"></use></svg>
                 <span class="plyr__sr-only">Mute</span>
@@ -79,7 +83,7 @@
 
             // Initialize Plyr
             const player = new Plyr(video, {
-                controls: ['play-large', 'play', 'mute', 'volume', 'settings', 'fullscreen'],
+                controls: ['play-large', 'play', 'pause', 'mute', 'volume', 'settings', 'fullscreen'],
             });
 
             // HLS.js setup
