@@ -3,7 +3,7 @@
 
 <head>
     <title>Live Stream Player</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="referrer" content="no-referrer">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.6.12/dist/plyr.css">
     <style>
@@ -28,21 +28,9 @@
 </head>
 
 <body>
-    <div hidden="" id="sprite-plyr">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <symbol id="plyr-play" viewBox="0 0 18 18">
-                <path d="M15.562 8.1L3.87.225c-.818-.562-1.87 0-1.87.9v15.75c0 .9 1.052 1.462 1.87.9L15.563 9.9c.584-.45.584-1.35 0-1.8z"></path>
-            </symbol>
-            <symbol id="plyr-pause" viewBox="0 0 18 18">
-                <path d="M6 1H3c-.6 0-1 .4-1 1v14c0 .6.4 1 1 1h3c.6 0 1-.4 1-1V2c0-.6-.4-1-1-1zm6 0c-.6 0-1 .4-1 1v14c0 .6.4 1 1 1h3c.6 0 1-.4 1-1V2c0-.6-.4-1-1-1h-3z"></path>
-            </symbol>
-            <!-- Other symbols omitted for brevity -->
-        </svg>
-    </div>
-
     <div class="plyr plyr--full-ui plyr--video plyr--html5 plyr--fullscreen-enabled plyr--is-touch">
         <div class="plyr__video-wrapper">
-            <video id="player" autoplay="" muted="" crossorigin="" playsinline=""></video>
+            <video id="player" autoplay muted crossorigin playsinline></video>
             <div class="plyr__poster"></div>
         </div>
         <div class="plyr__controls">
@@ -89,19 +77,22 @@
                 return;
             }
 
+            // Initialize Plyr
+            const player = new Plyr(video, {
+                controls: ['play-large', 'play', 'mute', 'volume', 'settings', 'fullscreen'],
+            });
+
+            // HLS.js setup
             if (Hls.isSupported()) {
                 const hls = new Hls();
                 hls.loadSource(source);
                 hls.attachMedia(video);
                 hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                    const player = new Plyr(video, {
-                        controls: ['play-large', 'play', 'mute', 'volume', 'settings', 'fullscreen'],
-                    });
-                    console.log('Plyr initialized with controls'); // Debugging log
+                    player.play(); // Start playing when the manifest is parsed
                 });
             } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
                 video.src = source;
-                new Plyr(video);
+                player.play(); // Start playing for native HLS support
             } else {
                 document.body.innerHTML = '<p>Your browser does not support HLS playback.</p>';
             }
